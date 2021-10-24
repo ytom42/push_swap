@@ -6,7 +6,7 @@
 #    By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/12 20:08:40 by ytomiyos          #+#    #+#              #
-#    Updated: 2021/10/18 22:02:54 by ytomiyos         ###   ########.fr        #
+#    Updated: 2021/10/24 16:07:30 by ytomiyos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ LIBFT	=	./libft/libft.a
 
 SRCS	=	main.c \
 			sort.c \
+			vars.c \
 			operations/push.c \
 			operations/swap.c \
 			operations/rotate.c \
