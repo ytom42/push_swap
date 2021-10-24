@@ -6,74 +6,90 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 01:34:39 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/10/19 09:27:08 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/10/24 16:01:31 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort(t_stack *stack_a, t_stack *stack_b);
-void	vars_init(t_stacks *stacks, t_vars *vars);
-int		check(t_stacks *stacks);
-int		get_min(t_stack *stack, t_vars *vars);
-int		get_rev(t_stack *stack);
+int		check(t_stacks *stacks, t_vars *vars);
+int		check_low(t_stack *stack, int n);
+void	get_a_bottom(t_stacks *stacks, t_vars *vars);
 
-void	sort(t_stack *stack_a, t_stack *stack_b)
+void	sort(t_stacks *stacks, t_vars *vars)
 {
-	t_stacks stacks;
-	t_vars vars;
+	t_stack *a;
+	t_stack *b;
 
-	stacks.a = stack_a;
-	stacks.b = stack_b;
-	//////////////////////////
-	system("clear");
-	print_stack(&stacks);
-	system("rm log.txt");
-	system("touch log.txt");
-	int fd = open("log.txt", O_WRONLY);
-	/////////////////////////
+	a = stacks->a;
+	b = stacks->b;
+	vars->phase = START;
+	test_start(stacks, vars); //test-------------
 	while (1)
 	{
-		vars_init(&stacks, &vars);
+		check(stacks, vars);
+		vars_init(stacks, vars);
 
-		if (stacks.a->list[stacks.a->top] >= stacks.b->list[stacks.b->top] && vars.rev == 0)
-			test_sort(&stacks, "pa", fd);
-		else if (vars.min == stacks.a->list[stacks.a->top])
-			test_sort(&stacks, "pb", fd);
-		else
+		if (a->list[a->top] == stacks->sorted->list[stacks->sorted->next] && vars->phase != START)
 		{
-			// test_sort(&stacks, "ra", fd);
-			if (vars.r <= vars.rr)
-				test_sort(&stacks, "ra", fd);
+			test_sort(stacks, vars, "ra");
+			stacks->sorted->next -= 1;
+		}
+		else if (b->top != 0 && b->list[b->top] == stacks->sorted->list[stacks->sorted->next] && vars->phase != START)
+			test_sort(stacks, vars, "pa");
+		else if (stacks->a->list[stacks->a->top - 1] != vars->minimum && stacks->a->list[stacks->a->top] > stacks->a->list[stacks->a->top - 1] && vars->phase == ADD_A)
+			test_sort(stacks, vars, "sa");
+		else if (vars->phase == START)
+		{
+			if (check_low(stacks->sorted, a->list[a->top]) == 1)
+				test_sort(stacks, vars, "pb");
 			else
-				test_sort(&stacks, "rra", fd);
+				test_sort(stacks, vars, "ra");
+		}
+		else if (vars->phase == ADD_A)
+		{
+			if (!(check_low(stacks->tmp, b->list[b->top])))
+				test_sort(stacks, vars, "pa");
+			else
+				test_sort(stacks, vars, "rb");
+		}
+		else if (vars->phase == ADD_B)
+		{
+			test_sort(stacks, vars, "pb");
+		}
+		
+		// フェーズ切り替え
+		if (vars->phase == START)
+		{
+			if (stacks->a->list[stacks->a->top] == vars->a_bottom)
+			{
+				vars->phase = ADD_A;
+				vars->a_bottom = stacks->a->list[1];
+				vars->b_top_tmp = stacks->b->top;
+				single_stack_sort(stacks->tmp, stacks->b);
+			}
+		}
+		else if (vars->phase == ADD_B)
+		{
+			if (stacks->a->list[stacks->a->top] == vars->minimum)
+			{
+				vars->phase = ADD_A;
+				vars->b_top_tmp = stacks->b->top;
+				single_stack_sort(stacks->tmp, stacks->b);
+			}
+		}
+		else if (vars->phase == ADD_A)
+		{
+			if (stacks->b->top == 0)
+			{
+				vars->phase = ADD_B;
+				get_a_bottom(stacks, vars);
+			}
 		}
 	}
 }
 
-void	vars_init(t_stacks *stacks, t_vars *vars)
-{
-	////////////////////////////////
-	static int k = 1;
-	if (check(stacks) == 0)
-	{
-		printf("CLEAR\n");
-		printf("%d回\n", k);
-		exit(0);
-	}
-	////////////////////////////////
-
-	vars->min_a = get_min(stacks->a, vars); // vars->r & vars->rr
-	vars->rev_a = get_rev(stacks->a);
-
-	////////////////////////////////
-	printf("%d回目\n\n\n", k);
-	k++;
-	print_vars(stacks, vars);
-	////////////////////////////////
-}
-
-int	check(t_stacks *stacks)
+int	check(t_stacks *stacks, t_vars *vars)
 {
 	int		i;
 	int		*stack;
@@ -87,66 +103,36 @@ int	check(t_stacks *stacks)
 		i--;
 	}
 	if (stacks->b->top == 0)
-		return (0);
+	{
+		printf("\n\nCLEAR\n");
+		printf("%d回\n", vars->k - 1);
+		exit(0);
+	}
 	else
 		return (1);
 }
 
-int	get_min(t_stack *stack, t_vars *vars)
+int	check_low(t_stack *stack, int n)
 {
-	int		i;
-	int		min;
+	int	i;
+	int	top;
 
-	if (stack->top == 0)
+	top = stack->top;
+	i = ((top + 1) / 2) + 1;
+	while (i <= top)
 	{
-		ft_putendl_fd("get_min: ERROR", 2);
-		exit(0);
-	}
-	min = stack->list[1];
-	vars->r = stack->top - 1;
-	vars->rr = 1;
-	if (stack->top == 1)
-	{
-		vars->r = 0;
-		vars->rr = 0;
-		return (min);
-	}
-	i = 2;
-	while (i <= stack->top)
-	{
-		if (min > stack->list[i])
-		{
-			min = stack->list[i];
-			vars->r = stack->top - i;
-			vars->rr = i;
-			if (i == stack->top)
-			{
-				vars->r = 0;
-				vars->rr = 0;
-			}
-		}
+		if (stack->list[i] == n)
+			return (1);
 		i++;
 	}
-	return (min);
+	return (0);
 }
 
-int	get_rev(t_stack *stack)
+void	get_a_bottom(t_stacks *stacks, t_vars *vars)
 {
-	int		i;
-	int		rev;
-	int		tmp;
-
-	if (stack->top <= 1)
-		return (0);
-	rev = 0;
-	tmp = stack->list[1];
-	i = 2;
-	while (i <= stack->top)
-	{
-		if (tmp < stack->list[i])
-			rev++;
-		tmp = stack->list[i];
-		i++;
-	}
-	return (rev);
+	int	i;
+	i = stacks->a->top;
+	while (stacks->a->list[i] != vars->minimum)
+		i--;
+	vars->a_bottom = stacks->a->list[i + 1];
 }

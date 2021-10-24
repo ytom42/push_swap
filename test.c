@@ -1,15 +1,21 @@
 #include "push_swap.h"
 #include <curses.h>
 
-void	test_sort(t_stacks *stacks, char *str, int fd)
+void	test_start(t_stacks *stacks, t_vars *vars)
+{
+	system("clear");
+	print_stack(stacks, vars);
+	system("rm log.txt");
+	system("touch log.txt");
+	vars->fd = open("log.txt", O_WRONLY);
+}
+
+void	test_sort(t_stacks *stacks, t_vars *vars, char *str)
 {
 	char	input[10];
-
 	ft_strlcpy(input, str, 4);
-
-	char	tmp[10];
-	printf("\ninput = %s\n", input);
-	scanf("%s", tmp);
+	printf("next-> %s\n", input);
+	while(getchar() != '\n');
 
 	if (!ft_strncmp(input, "pa", 3))
 		push_a(stacks);
@@ -36,12 +42,12 @@ void	test_sort(t_stacks *stacks, char *str, int fd)
 	else
 		return;
 
-	ft_putendl_fd(input, fd);
+	ft_putendl_fd(input, vars->fd);
 	system("clear");
-	print_stack(stacks);
+	print_stack(stacks, vars);
 }
 
-void	print_stack(t_stacks *stacks)
+void	print_stack(t_stacks *stacks, t_vars *vars)
 {
 	int	i;
 	
@@ -49,7 +55,10 @@ void	print_stack(t_stacks *stacks)
 	i = 1;
 	while (i <= stacks->b->top)
 	{
-		printf("%d\n", stacks->b->list[i]);
+		printf("[%d] %d", i, stacks->b->list[i]);
+		if (stacks->b->list[i] == vars->minimum)
+			printf(" <- all.minimum");
+		printf("\n");
 		i++;
 	}
 	printf("======== top[%d]\n", stacks->b->top);
@@ -57,21 +66,52 @@ void	print_stack(t_stacks *stacks)
 	i = stacks->a->top;
 	while (i > 0)
 	{
-		printf("%d\n", stacks->a->list[i]);
+		printf("[%d] %d", i, stacks->a->list[i]);
+		if (stacks->a->list[i] == vars->minimum)
+			printf(" <- all.minimum");
+		else if (stacks->a->list[i] == vars->a_bottom)
+			printf(" <- a.bottom");
+		printf("\n");
 		i--;
 	}
 	printf("======== top[%d]\n", stacks->a->top);
+	i = stacks->sorted->top;
+	while (i > 0)
+	{
+		printf("%d ", stacks->sorted->list[i]);
+		i--;
+	}
+	printf("\n");
+	printf("tmp.top = %d\n", stacks->tmp->top);
+	i = stacks->tmp->top;
+	while (i > 0)
+	{
+		printf("%d ", stacks->tmp->list[i]);
+		i--;
+	}
 }
 
 void	print_vars(t_stacks *stacks, t_vars *vars)
 {
-	printf("a.min = %d\n", vars->min_a);
-	printf("a.rev = %d\n", vars->rev_a);
-	printf("a.r = %d\n", vars->r);
-	printf("a.rr = %d\n", vars->rr);
-	printf("a[top] = %d\n\n", stacks->a->list[stacks->a->top]);
+	printf("\n---------------------\n");
+	printf("%d回目\n", vars->k++);
+	printf("---------------------\n");
+	printf("target = %d\n", stacks->sorted->list[stacks->sorted->next]);
+	printf("minimum = %d\n", vars->minimum);
+	if (vars->phase == START)
+		printf("phase = START\n\n");
+	else if (vars->phase == ADD_A)
+		printf("phase = ADD_A\n\n");
+	else if (vars->phase == ADD_B)
+		printf("phase = ADD_B\n\n");
 
-	printf("b.min = %d\n", vars->min_b);
-	printf("b.rev = %d\n", vars->rev_b);
-	printf("b[top] = %d\n\n", stacks->b->list[stacks->b->top]);
+	printf("b[top] = %d\n", stacks->b->list[stacks->b->top]);
+	printf("b.min = %d\n", vars->b_min);
+	printf("b.top_tmp = %d\n", vars->b_top_tmp);
+	printf("\n");
+
+	printf("a[top] = %d\n", stacks->a->list[stacks->a->top]);
+	printf("a[bottom] = %d\n", vars->a_bottom);
+	printf("a.min = %d\n", vars->a_min);
+	printf("---------------------\n");
 }
