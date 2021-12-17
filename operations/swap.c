@@ -6,40 +6,39 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 15:31:30 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/10/15 02:25:27 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/12/17 10:36:20 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	swap_a(t_stacks *stacks) //先頭2つを入れ替え
+void	swap_a(t_stacks *s) //先頭2つを入れ替え
 {
 	int		tmp;
-	int		*stack;
 	int		top;
 
-	stack = stacks->a->list;
-	top = stacks->a->top;
-	tmp = stack[top];
-	stack[top] = stack[top - 1];
-	stack[top - 1] = tmp;
+	top = s->a_top;
+	tmp = s->a[top].n;
+	s->a[top].n = s->a[top - 1].n;
+	s->a[top - 1].n = tmp;
+	write(fd, "sa\n", 3);
 }
 
-void	swap_b(t_stacks *stacks) //先頭2つを入れ替え
+void	swap_b(t_stacks *s) //先頭2つを入れ替え
 {
 	int		tmp;
-	int		*stack;
 	int		top;
 
-	stack = stacks->b->list;
-	top = stacks->b->top;
-	tmp = stack[top];
-	stack[top] = stack[top - 1];
-	stack[top - 1] = tmp;
+	top = s->b_top;
+	tmp = s->b[top].n;
+	s->b[top].n = s->b[top - 1].n;
+	s->b[top - 1].n = tmp;
+	write(fd, "sb\n", 3);
 }
 
-void	swap_a_b(t_stacks *stacks) //saとsbを同時に行う
+void	swap_a_b(t_stacks *s) //saとsbを同時に行う
 {
-	swap_a(stacks);
-	swap_b(stacks);
+	swap_a(s);
+	swap_b(s);
+	write(fd, "ss\n", 3);
 }

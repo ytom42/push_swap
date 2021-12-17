@@ -6,44 +6,46 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 15:32:24 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/10/17 02:08:15 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/12/17 10:35:48 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	push(t_stack *stack, int n)
+void	push(t_element *stack, int *top, int n)
 {
-	stack->list[stack->top + 1] = n;
-	stack->top += 1;
+	stack[*top + 1].n = n;
+	*top += 1;
 }
 
-int	pop(t_stack *stack)
+int	pop(t_element *stack, int *top)
 {
 	int	n;
 
-	if (stack->top <= 0)
+	if (*top <= 0)
 	{
 		ft_putendl_fd("pop error", 2);/////////////////////
 		exit(0);
 	}
-	n = stack->list[stack->top];
-	stack->top -= 1;
+	n = stack[*top].n;
+	*top -= 1;
 	return (n);
 }
 
-void	push_a(t_stacks *stacks) //bの先頭をaの先頭に置く
+void	push_a(t_stacks *s)
 {
 	int		n;
 
-	n = pop(stacks->b);
-	push(stacks->a, n);
+	n = pop(s->b, &s->b_top);
+	push(s->a, &s->a_top, n);
+	write(fd, "pa\n", 3);
 }
 
-void	push_b(t_stacks *stacks) //aの先頭をbの先頭に置く
+void	push_b(t_stacks *s)
 {
 	int		n;
 
-	n = pop(stacks->a);
-	push(stacks->b, n);
+	n = pop(s->a, &s->a_top);
+	push(s->b, &s->b_top, n);
+	write(fd, "pb\n", 3);
 }
