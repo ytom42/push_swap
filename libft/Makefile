@@ -6,7 +6,7 @@
 #    By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/22 22:04:00 by ytomiyos          #+#    #+#              #
-#    Updated: 2021/10/14 17:56:37 by ytomiyos         ###   ########.fr        #
+#    Updated: 2021/12/02 22:13:52 by ytomiyos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ $(NAME)	:	$(OBJS)
 			ar -rcs $(NAME) $(OBJS)
 
 clean	:
-			rm -f *.o
+			rm -f $(OBJS)
 
 fclean	:	clean
 			rm -f $(NAME)
