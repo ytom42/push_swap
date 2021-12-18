@@ -3,6 +3,8 @@
 a.out
 *.o
 
+push_swap
 checker_Mac
+libft.a
 tips.txt
 log.txt

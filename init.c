@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 23:09:17 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/12/16 17:05:50 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/12/18 16:11:33 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,16 @@ void	put_argument_on_stack(t_stacks *s, char **argv)
 
 	i = 1;
 	j = s->stack_len;
+	s->a_max = ft_atoi(argv[i]);
+	s->a_min = ft_atoi(argv[i]);
 	while (argv[i])
 	{
 		tmp = ft_atoi(argv[i]);
 		s->a[j].n = tmp;
+		if (s->a_max < tmp)
+			s->a_max = tmp;
+		if (s->a_min > tmp)
+			s->a_min = tmp;
 		i += 1;
 		j -= 1;
 	}
