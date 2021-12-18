@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 20:08:47 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/12/08 00:43:11 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/12/18 17:56:03 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int	main(int argc, char **argv)
 {
-	system("clear"); //test
-
 	t_stacks	s;
 
 	if (check_argument(argc, argv))

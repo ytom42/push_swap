@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 15:32:24 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/12/17 10:35:48 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/12/18 18:02:18 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	push_a(t_stacks *s)
 
 	n = pop(s->b, &s->b_top);
 	push(s->a, &s->a_top, n);
-	write(fd, "pa\n", 3);
+	write(1, "pa\n", 3);
 }
 
 void	push_b(t_stacks *s)
@@ -47,5 +47,5 @@ void	push_b(t_stacks *s)
 
 	n = pop(s->a, &s->a_top);
 	push(s->b, &s->b_top, n);
-	write(fd, "pb\n", 3);
+	write(1, "pb\n", 3);
 }

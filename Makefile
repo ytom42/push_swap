@@ -6,7 +6,7 @@
 #    By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/12 20:08:40 by ytomiyos          #+#    #+#              #
-#    Updated: 2021/12/16 18:17:30 by ytomiyos         ###   ########.fr        #
+#    Updated: 2021/12/18 18:14:12 by ytomiyos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,8 +29,7 @@ SRCS	=	main.c \
 			operations/push.c \
 			operations/swap.c \
 			operations/rotate.c \
-			operations/reverse_rotate.c \
-			test.c 
+			operations/reverse_rotate.c
 
 OBJS	=	$(SRCS:.c=.o)
 

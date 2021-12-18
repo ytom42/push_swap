@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 01:34:39 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/12/18 17:36:33 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/12/18 18:08:19 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void a_to_b(t_stacks *s)
 {
-	printf("START<%s>\n", __func__);
 	if (s->b_top <= 1)
 	{
 		push_b(s);
@@ -33,7 +32,6 @@ void b_to_a(t_stacks *s)
 	int i;
 	int top_index;
 
-	printf("START<%s>\n", __func__);
 	i = 0;
 	top_index = get_top_index_b(s);
 	if ((top_index * 2) > s->b_top)
@@ -164,20 +162,15 @@ void five_or_less(t_stacks *s)
 
 void sort(t_stacks *s)
 {
-	fd = open("./log.txt", O_WRONLY);
-	// fd = 1;
 	if (s->stack_len <= 5)
 		five_or_less(s);
 	while(!check_stack(s))
 	{
-		// print_stack(s); //input
 		if (s->a_top == 0)
 			b_to_a(s);
 		else
 			a_to_b(s);
 	}
 	all_free(s);
-	printf("END\n"); //test
-	printf("stack_len:%d\n", s->stack_len);
 	return ;
 }

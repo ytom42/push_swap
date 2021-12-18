@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 20:08:43 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/12/17 10:34:03 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/12/18 18:14:03 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,19 +83,4 @@ bool	is_sorted_a(t_stacks *s);
 bool	is_sorted_b(t_stacks *s);
 int		get_top_index_b(t_stacks *s);
 
-
-// ======================================================
-void	print_stack(t_stacks *stacks);
-int fd;
-// ARG=$(jot -r -s " " 100 -2147483648 2147483647); ./push_swap $ARG; cat log.txt|./checker_Mac $ARG
-// ======================================================
 #endif
-
-#include <stdio.h>
-#include <fcntl.h>
-
-// - write
-// - read
-// - malloc
-// - free
-// - exit

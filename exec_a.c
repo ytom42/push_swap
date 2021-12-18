@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 18:01:13 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/12/17 10:29:57 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/12/18 17:58:05 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void exec_a_rrr(t_stacks *s, int index)
 {
-	printf("START<%s>\n", __func__);
-	printf("<TARGET>%d exec:%d \n", s->a[index].n, s->a[index].exec_num);
 	int i;
 	int rrr;
 	t_element *element;
@@ -50,8 +48,6 @@ void exec_a_rrr(t_stacks *s, int index)
 
 void exec_a_rr(t_stacks *s, int index)
 {
-	printf("START<%s>\n", __func__);
-	printf("<TARGET>%d exec:%d \n", s->a[index].n, s->a[index].exec_num);
 	int i;
 	int rr;
 	t_element *element;
@@ -86,8 +82,6 @@ void exec_a_rr(t_stacks *s, int index)
 
 void exec_ra_rrb(t_stacks *s, int index)
 {
-	printf("START<%s>\n", __func__);
-	printf("<TARGET>%d exec:%d \n", s->a[index].n, s->a[index].exec_num);
 	int i;
 	t_element *element;
 
@@ -108,8 +102,6 @@ void exec_ra_rrb(t_stacks *s, int index)
 
 void exec_rra_rb(t_stacks *s, int index)
 {
-	printf("START<%s>\n", __func__);
-	printf("<TARGET>%d exec:%d \n", s->a[index].n, s->a[index].exec_num);
 	int i;
 	t_element *element;
 
@@ -130,7 +122,6 @@ void exec_rra_rb(t_stacks *s, int index)
 
 void exec_a(t_stacks *s)
 {
-	printf("START<%s>\n", __func__);
 	int i;
 	int rr;
 	int rrr;
@@ -146,7 +137,6 @@ void exec_a(t_stacks *s)
 			rrr = ft_max(s->a[i].rra, s->a[i].rrb);
 			ra_rrb = s->a[i].ra + s->a[i].rrb;
 			rra_rb = s->a[i].rra + s->a[i].rb;
-			printf("rr:%d rrr:%d ra_rrb:%d rra_rb:%d\n", rr, rrr, ra_rrb, rra_rb);
 			if (ra_rrb == s->exec_len)
 				exec_ra_rrb(s, i);
 			else if (rra_rb == s->exec_len)

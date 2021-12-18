@@ -6,13 +6,13 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 15:32:52 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/12/17 10:36:11 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/12/18 18:02:42 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	rotate_a(t_stacks *s, bool is_print) //スタックaのすべての要素を1ずつシフトアップ
+void	rotate_a(t_stacks *s, bool is_print)
 {
 	int		i;
 	int		tmp;
@@ -26,10 +26,10 @@ void	rotate_a(t_stacks *s, bool is_print) //スタックaのすべての要素�
 	}
 	s->a[1].n = tmp;
 	if (is_print)
-		write(fd, "ra\n", 3);
+		write(1, "ra\n", 3);
 }
 
-void	rotate_b(t_stacks *s, bool is_print) //スタックbの全ての要素を1ずつシフトアップ
+void	rotate_b(t_stacks *s, bool is_print)
 {
 	int		i;
 	int		tmp;
@@ -43,12 +43,12 @@ void	rotate_b(t_stacks *s, bool is_print) //スタックbの全ての要素を1�
 	}
 	s->b[1].n = tmp;
 	if (is_print)
-		write(fd, "rb\n", 3);
+		write(1, "rb\n", 3);
 }
 
-void	rotate_a_b(t_stacks *s) //ra と rb を同時に行う
+void	rotate_a_b(t_stacks *s)
 {
 	rotate_a(s, false);
 	rotate_b(s, false);
-	write(fd, "rr\n", 3);
+	write(1, "rr\n", 3);
 }
