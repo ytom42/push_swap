@@ -1,35 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tool.c                                             :+:      :+:    :+:   */
+/*   tool2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/07 20:15:14 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/12/16 22:49:46 by ytomiyos         ###   ########.fr       */
+/*   Created: 2021/12/18 18:36:14 by ytomiyos          #+#    #+#             */
+/*   Updated: 2021/12/18 18:37:01 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int ft_min(int a, int b)
+bool	is_sorted_a(t_stacks *s)
 {
-	return (a < b ? a : b);
-}
-
-int ft_max(int a, int b)
-{
-	return (a > b ? a : b);
-}
-
-int ft_abs(int a)
-{
-	return (a < 0 ? -a : a);
-}
-
-bool is_sorted_a(t_stacks *s)
-{
-	int i;
+	int	i;
 
 	i = 1;
 	while (i < s->a_top)
@@ -41,9 +26,9 @@ bool is_sorted_a(t_stacks *s)
 	return (true);
 }
 
-bool is_sorted_b(t_stacks *s)
+bool	is_sorted_b(t_stacks *s)
 {
-	int i;
+	int	i;
 
 	i = 1;
 	while (i < s->b_top)
@@ -55,9 +40,9 @@ bool is_sorted_b(t_stacks *s)
 	return (true);
 }
 
-bool check_stack(t_stacks *s)
+bool	check_stack(t_stacks *s)
 {
-	int i;
+	int	i;
 
 	i = 1;
 	if (s->b_top == 0)
@@ -74,10 +59,10 @@ bool check_stack(t_stacks *s)
 		return (false);
 }
 
-int get_top_index_b(t_stacks *s)
+int	get_top_index_b(t_stacks *s)
 {
-	int i;
-	int ret_index;
+	int	i;
+	int	ret_index;
 
 	ret_index = 1;
 	i = 2;

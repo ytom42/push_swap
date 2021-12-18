@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   tool1.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/15 23:20:44 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/12/18 18:59:06 by ytomiyos         ###   ########.fr       */
+/*   Created: 2021/12/07 20:15:14 by ytomiyos          #+#    #+#             */
+/*   Updated: 2021/12/18 18:36:42 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	error(t_stacks *s)
+int	ft_min(int a, int b)
 {
-	ft_putendl_fd("Error", 2);
-	all_free(s);
-	exit(1);
+	if (a < b)
+		return (a);
+	else
+		return (b);
 }
 
-void	all_free(t_stacks *s)
+int	ft_max(int a, int b)
 {
-	if (s == NULL)
-		return ;
-	if (s->a)
-		free(s->a);
-	if (s->b)
-		free(s->b);
+	if (a > b)
+		return (a);
+	else
+		return (b);
+}
+
+int	ft_abs(int a)
+{
+	if (a < 0)
+		return (-a);
+	else
+		return (a);
 }

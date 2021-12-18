@@ -6,7 +6,7 @@
 #    By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/12 20:08:40 by ytomiyos          #+#    #+#              #
-#    Updated: 2021/12/18 18:14:12 by ytomiyos         ###   ########.fr        #
+#    Updated: 2021/12/18 18:36:34 by ytomiyos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ SRCS	=	main.c \
 			init.c \
 			sort.c \
 			error.c \
-			tool.c \
+			tool1.c \
+			tool2.c \
 			operation_init_a.c \
 			exec_a.c \
 			operations/push.c \

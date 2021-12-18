@@ -6,13 +6,13 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 01:34:39 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/12/18 18:08:19 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/12/18 19:06:08 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void a_to_b(t_stacks *s)
+void	a_to_b(t_stacks *s)
 {
 	if (s->b_top <= 1)
 	{
@@ -22,15 +22,13 @@ void a_to_b(t_stacks *s)
 	else if ((s->b_top == 2) && (s->b[1].n > s->b[2].n))
 		swap_b(s);
 	else
-	{
 		operation_init_a(s);
-	}
 }
 
-void b_to_a(t_stacks *s)
+void	b_to_a(t_stacks *s)
 {
-	int i;
-	int top_index;
+	int	i;
+	int	top_index;
 
 	i = 0;
 	top_index = get_top_index_b(s);
@@ -55,10 +53,10 @@ void b_to_a(t_stacks *s)
 	return ;
 }
 
-int get_n2(t_stacks *s)
+int	get_n2(t_stacks *s)
 {
-	int i;
-	int ret;
+	int	i;
+	int	ret;
 
 	if (s->a_min != s->a[1].n)
 	{
@@ -79,9 +77,9 @@ int get_n2(t_stacks *s)
 	return (ret);
 }
 
-void update_amax_amin(t_stacks *s)
+void	update_amax_amin(t_stacks *s)
 {
-	int i;
+	int	i;
 
 	i = 1;
 	s->a_max = s->a[i].n;
@@ -94,11 +92,11 @@ void update_amax_amin(t_stacks *s)
 	}
 }
 
-void five_or_less(t_stacks *s)
+void	five_or_less(t_stacks *s)
 {
-	int len;
-	int n1;
-	int n2;
+	int	len;
+	int	n1;
+	int	n2;
 
 	n1 = 0;
 	n2 = 0;
@@ -120,7 +118,7 @@ void five_or_less(t_stacks *s)
 			if (s->a_max == s->a[2].n || s->a_max == s->a[1].n)
 				swap_a(s);
 			if (s->a_max != s->a[1].n)
-				rotate_a(s ,true);
+				rotate_a(s, true);
 		}
 	}
 	else
@@ -153,18 +151,18 @@ void five_or_less(t_stacks *s)
 			if (s->a_max == s->a[2].n || s->a_max == s->a[1].n)
 				swap_a(s);
 			if (s->a_max != s->a[1].n)
-				rotate_a(s ,true);
+				rotate_a(s, true);
 		}
 		while (s->b_top > 0)
 			push_a(s);
 	}
 }
 
-void sort(t_stacks *s)
+void	sort(t_stacks *s)
 {
 	if (s->stack_len <= 5)
 		five_or_less(s);
-	while(!check_stack(s))
+	while (!check_stack(s))
 	{
 		if (s->a_top == 0)
 			b_to_a(s);

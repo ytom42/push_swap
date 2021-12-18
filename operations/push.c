@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 15:32:24 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/12/18 18:02:18 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/12/18 18:57:08 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ int	pop(t_element *stack, int *top)
 	int	n;
 
 	if (*top <= 0)
-	{
-		ft_putendl_fd("pop error", 2);/////////////////////
 		exit(0);
-	}
 	n = stack[*top].n;
 	*top -= 1;
 	return (n);

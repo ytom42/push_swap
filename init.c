@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 23:09:17 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/12/18 16:11:33 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/12/18 18:55:06 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	init(int argc, char **argv, t_stacks *s)
 {
 	s->stack_len = argc - 1;
-	s->a_top = s->stack_len; // 配列[0]は使わない
+	s->a_top = s->stack_len;
 	s->b_top = 0;
 	memory_allocate(s);
 	put_argument_on_stack(s, argv);
