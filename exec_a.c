@@ -6,17 +6,17 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 18:01:13 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/12/18 17:58:05 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/12/19 19:02:44 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void exec_a_rrr(t_stacks *s, int index)
+void	exec_a_rrr(t_stacks *s, int index)
 {
-	int i;
-	int rrr;
-	t_element *element;
+	int			i;
+	int			rrr;
+	t_element	*element;
 
 	i = 0;
 	element = &s->a[index];
@@ -46,11 +46,11 @@ void exec_a_rrr(t_stacks *s, int index)
 	}
 }
 
-void exec_a_rr(t_stacks *s, int index)
+void	exec_a_rr(t_stacks *s, int index)
 {
-	int i;
-	int rr;
-	t_element *element;
+	int			i;
+	int			rr;
+	t_element	*element;
 
 	i = 0;
 	element = &s->a[index];
@@ -80,10 +80,10 @@ void exec_a_rr(t_stacks *s, int index)
 	}
 }
 
-void exec_ra_rrb(t_stacks *s, int index)
+void	exec_ra_rrb(t_stacks *s, int index)
 {
-	int i;
-	t_element *element;
+	int			i;
+	t_element	*element;
 
 	element = &s->a[index];
 	i = 0;
@@ -100,10 +100,10 @@ void exec_ra_rrb(t_stacks *s, int index)
 	}
 }
 
-void exec_rra_rb(t_stacks *s, int index)
+void	exec_rra_rb(t_stacks *s, int index)
 {
-	int i;
-	t_element *element;
+	int			i;
+	t_element	*element;
 
 	element = &s->a[index];
 	i = 0;
@@ -120,13 +120,13 @@ void exec_rra_rb(t_stacks *s, int index)
 	}
 }
 
-void exec_a(t_stacks *s)
+void	exec_a(t_stacks *s)
 {
-	int i;
-	int rr;
-	int rrr;
-	int ra_rrb;
-	int rra_rb;
+	int	i;
+	int	rr;
+	int	rrr;
+	int	ra_rrb;
+	int	rra_rb;
 
 	i = 1;
 	while (i <= s->a_top)

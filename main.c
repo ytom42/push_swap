@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 20:08:47 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/12/18 18:53:02 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/12/19 01:11:42 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	main(int argc, char **argv)
 {
 	t_stacks	s;
 
+	if (argc == 1)
+		return (0);
 	if (check_argument(argc, argv))
 	{
 		init(argc, argv, &s);
