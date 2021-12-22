@@ -6,22 +6,13 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 23:09:17 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/12/18 18:55:06 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/12/22 12:32:52 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	init(int argc, char **argv, t_stacks *s)
-{
-	s->stack_len = argc - 1;
-	s->a_top = s->stack_len;
-	s->b_top = 0;
-	memory_allocate(s);
-	put_argument_on_stack(s, argv);
-}
-
-void	memory_allocate(t_stacks *s)
+static	void	memory_allocate(t_stacks *s)
 {
 	s->a = (t_element *)malloc(sizeof(t_element) * (s->stack_len + 1));
 	s->b = (t_element *)malloc(sizeof(t_element) * (s->stack_len + 1));
@@ -29,7 +20,7 @@ void	memory_allocate(t_stacks *s)
 		error(s);
 }
 
-void	put_argument_on_stack(t_stacks *s, char **argv)
+static	void	put_argument_on_stack(t_stacks *s, char **argv)
 {
 	int		i;
 	int		j;
@@ -50,4 +41,13 @@ void	put_argument_on_stack(t_stacks *s, char **argv)
 		i += 1;
 		j -= 1;
 	}
+}
+
+void	init(int argc, char **argv, t_stacks *s)
+{
+	s->stack_len = argc - 1;
+	s->a_top = s->stack_len;
+	s->b_top = 0;
+	memory_allocate(s);
+	put_argument_on_stack(s, argv);
 }

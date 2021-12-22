@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 20:08:47 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/12/19 01:11:42 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/12/22 14:26:59 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	main(int argc, char **argv)
 	return (0);
 }
 
-bool	is_num(char **argv)
+static	bool	is_num(char **argv)
 {
 	int	i;
 	int	isnum;
@@ -44,7 +44,7 @@ bool	is_num(char **argv)
 	return (true);
 }
 
-bool	is_duplicate(char **argv)
+static	bool	is_duplicate(char **argv)
 {
 	int	i;
 	int	j;

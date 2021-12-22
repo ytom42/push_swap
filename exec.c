@@ -1,126 +1,90 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_a.c                                           :+:      :+:    :+:   */
+/*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 18:01:13 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/12/19 19:02:44 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/12/22 14:58:04 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	exec_a_rrr(t_stacks *s, int index)
+static	void	exec_rrr(t_stacks *s, int index)
 {
 	int			i;
+	int			j;
 	int			rrr;
 	t_element	*element;
 
 	i = 0;
+	j = 0;
 	element = &s->a[index];
 	rrr = ft_min(element->rra, element->rrb);
-	while (i < rrr)
-	{
+	while (i++ < rrr)
 		rev_rotate_a_b(s);
-		i++;
-	}
 	if (element->rra > element->rrb)
-	{
-		i = 0;
-		while (i < element->rra - element->rrb)
-		{
+		while (j++ < element->rra - element->rrb)
 			rev_rotate_a(s, true);
-			i++;
-		}
-	}
 	else
-	{
-		i = 0;
-		while (i < element->rrb - element->rra)
-		{
+		while (j++ < element->rrb - element->rra)
 			rev_rotate_b(s, true);
-			i++;
-		}
-	}
 }
 
-void	exec_a_rr(t_stacks *s, int index)
+static	void	exec_rr(t_stacks *s, int index)
 {
 	int			i;
+	int			j;
 	int			rr;
 	t_element	*element;
 
 	i = 0;
+	j = 0;
 	element = &s->a[index];
 	rr = ft_min(element->ra, element->rb);
-	while (i < rr)
-	{
+	while (i++ < rr)
 		rotate_a_b(s);
-		i++;
-	}
 	if (element->ra > element->rb)
-	{
-		i = 0;
-		while (i < element->ra - element->rb)
-		{
+		while (j++ < element->ra - element->rb)
 			rotate_a(s, true);
-			i++;
-		}
-	}
 	else
-	{
-		i = 0;
-		while (i < element->rb - element->ra)
-		{
+		while (j++ < element->rb - element->ra)
 			rotate_b(s, true);
-			i++;
-		}
-	}
 }
 
-void	exec_ra_rrb(t_stacks *s, int index)
+static	void	exec_ra_rrb(t_stacks *s, int index)
 {
 	int			i;
+	int			j;
 	t_element	*element;
 
-	element = &s->a[index];
 	i = 0;
-	while (i < element->ra)
-	{
+	j = 0;
+	element = &s->a[index];
+	while (i++ < element->ra)
 		rotate_a(s, true);
-		i++;
-	}
-	i = 0;
-	while (i < element->rrb)
-	{
+	while (j++ < element->rrb)
 		rev_rotate_b(s, true);
-		i++;
-	}
 }
 
-void	exec_rra_rb(t_stacks *s, int index)
+static	void	exec_rra_rb(t_stacks *s, int index)
 {
 	int			i;
+	int			j;
 	t_element	*element;
 
+	i = 0;
+	j = 0;
 	element = &s->a[index];
-	i = 0;
-	while (i < element->rra)
-	{
+	while (i++ < element->rra)
 		rev_rotate_a(s, true);
-		i++;
-	}
-	i = 0;
-	while (i < element->rb)
-	{
+	while (j++ < element->rb)
 		rotate_b(s, true);
-		i++;
-	}
 }
 
-void	exec_a(t_stacks *s)
+void	exec(t_stacks *s)
 {
 	int	i;
 	int	rr;
@@ -128,26 +92,18 @@ void	exec_a(t_stacks *s)
 	int	ra_rrb;
 	int	rra_rb;
 
-	i = 1;
-	while (i <= s->a_top)
-	{
-		if (s->a[i].exec_num == s->exec_len)
-		{
-			rr = ft_max(s->a[i].ra, s->a[i].rb);
-			rrr = ft_max(s->a[i].rra, s->a[i].rrb);
-			ra_rrb = s->a[i].ra + s->a[i].rrb;
-			rra_rb = s->a[i].rra + s->a[i].rb;
-			if (ra_rrb == s->exec_len)
-				exec_ra_rrb(s, i);
-			else if (rra_rb == s->exec_len)
-				exec_rra_rb(s, i);
-			else if (rr == s->exec_len)
-				exec_a_rr(s, i);
-			else if (rrr == s->exec_len)
-				exec_a_rrr(s, i);
-			push_b(s);
-			return ;
-		}
-		i++;
-	}
+	i = s->exec_min_i;
+	ra_rrb = s->a[i].ra + s->a[i].rrb;
+	rra_rb = s->a[i].rra + s->a[i].rb;
+	rr = ft_max(s->a[i].ra, s->a[i].rb);
+	rrr = ft_max(s->a[i].rra, s->a[i].rrb);
+	if (ra_rrb == s->exec_len)
+		exec_ra_rrb(s, i);
+	else if (rra_rb == s->exec_len)
+		exec_rra_rb(s, i);
+	else if (rr == s->exec_len)
+		exec_rr(s, i);
+	else if (rrr == s->exec_len)
+		exec_rrr(s, i);
+	push_b(s);
 }
