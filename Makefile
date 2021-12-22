@@ -6,14 +6,13 @@
 #    By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/12 20:08:40 by ytomiyos          #+#    #+#              #
-#    Updated: 2021/12/22 15:01:10 by ytomiyos         ###   ########.fr        #
+#    Updated: 2021/12/22 17:15:42 by ytomiyos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		=	gcc
 
 CFLAGS	=	-Wall -Wextra -Werror
-CFLAGS += -fsanitize=address -g3
 
 NAME	=	push_swap
 
@@ -25,6 +24,7 @@ SRCS	=	main.c \
 			error.c \
 			tool1.c \
 			tool2.c \
+			check_integer.c \
 			operation_init.c \
 			five_or_less.c \
 			exec.c \

@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 20:08:47 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/12/22 14:26:59 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2021/12/22 17:08:47 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,11 @@ bool	check_argument(int argc, char **argv)
 {
 	if (argc == 1)
 		return (false);
-	if (!is_duplicate(argv))
-		return (false);
 	if (!is_num(argv))
+		return (false);
+	if (!check_integer(argv))
+		return (false);
+	if (!is_duplicate(argv))
 		return (false);
 	return (true);
 }
