@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 17:08:30 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/12/22 17:26:55 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/01/09 17:56:15 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ bool	check_minmax(char *s)
 	return (true);
 }
 
+# include <stdio.h>
+
 bool	check_integer(char **argv)
 {
 	int		i;
@@ -77,7 +79,10 @@ bool	check_integer(char **argv)
 		if (len > 11)
 			return (false);
 		else if (len < 10 || (len < 11 && s[0] == '-'))
-			break ;
+		{
+			i++;
+			continue ;
+		}
 		else
 			if (!check_minmax(s))
 				return (false);

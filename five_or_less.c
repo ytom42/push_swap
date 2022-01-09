@@ -6,7 +6,7 @@
 /*   By: ytomiyos <ytomiyos@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 13:47:26 by ytomiyos          #+#    #+#             */
-/*   Updated: 2021/12/22 14:01:08 by ytomiyos         ###   ########.fr       */
+/*   Updated: 2022/01/09 17:55:49 by ytomiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ static	int	get_n2(t_stacks *s)
 
 static	void	three(t_stacks *s)
 {
+	if (!check_stack(s))
+		return ;
 	if (s->a_min == s->a[1].n)
 	{
 		if (s->a_max == s->a[3].n)
