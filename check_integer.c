@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+# include <stdio.h>
 
 static	bool	over_max(char *s)
 {
@@ -62,8 +63,6 @@ bool	check_minmax(char *s)
 	}
 	return (true);
 }
-
-# include <stdio.h>
 
 bool	check_integer(char **argv)
 {
